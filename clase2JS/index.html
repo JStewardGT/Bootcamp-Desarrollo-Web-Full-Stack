@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clase 2 javascript</title>
+  </head>
+  <body>
+    <form name="formulario">
+      <label for="nombre">Nombre:</label>
+      <input type="text" name="nombre" id="nombre" /> <br />
+      <label for="codigo">Código:</label>
+      <input type="text" name="codigo" id="codigo" /> <br />
+      <label for="cargos">Cargo:</label>
+      <select name="cargos" id="cargos">
+        <option value="1">Gerente</option>
+        <option value="2">Subgerente</option>
+        <option value="3">Secretario</option>
+        <option value="4">Empleado</option>
+      </select>
+      <br />
+      <label for="sueldo">Sueldo:</label>
+      <input type="text" name="sueldo" id="sueldo" /> <br />
+      <label for="telefono">Teléfono:</label>
+      <input type="number" name="telefono" id="telefono" minlength="3" maxlength="10" />
+      <br />
+
+      <input type="button" name="boton" value="Generar" onclick="dispararParametro()" />
+    </form>
+    <script src="index.js"></script>
+  </body>
+</html>

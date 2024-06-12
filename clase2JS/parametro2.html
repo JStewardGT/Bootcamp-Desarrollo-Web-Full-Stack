@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clase 2 javascript</title>
+  </head>
+  <body onload="abc()">
+    <form name="frm">
+      <label for="parm1">Cédula:</label>
+      <input type="text" name="parm1" id="parm1" value="no hay parametro" /><br />
+      <label for="parm2">Nombre:</label>
+      <input type="text" name="parm2" id="parm2" value="no hay parametro" /><br />
+      <label for="parm3">Cargo:</label>
+      <select name="parm3" id="parm3">
+        <option value="1">Gerente</option>
+        <option value="2">Subgerente</option>
+        <option value="3">Secretario</option>
+        <option value="4">Empleado</option>
+      </select>
+      <br />
+      <label for="parm4">Sueldo:</label>
+      <input type="text" name="parm4" id="parm4" value="no hay parametro" /><br />
+      <label for="parm5">Teléfono:</label>
+      <input type="text" name="parm5" id="parm5" value="no hay parametro" /><br />
+      <label for="parm6">Categoría Sueldo:</label>
+      <input type="text" name="parm6" id="parm6" value="no hay parametro" /><br />
+      <label for="parm7">Categoría Cargo:</label>
+      <input type="text" name="parm7" id="parm7" value="no hay parametro" /><br />
+
+      <input type="button" name="boton" value="Leer parámetro" onclick="abc()" />
+    </form>
+  </body>
+</html>
