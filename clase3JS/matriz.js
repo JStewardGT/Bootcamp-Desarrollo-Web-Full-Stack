@@ -35,6 +35,7 @@ const year = [
 ];
 
 /* ========================== matrices multidimencionales ========================== */
+/*
 // Arrays de jugadores y meses
 var jugador = ["Ferrero", "Nadal", "Moya", "Federer"];
 var meses = ["Mayo", "Junio", "Julio"];
@@ -64,3 +65,46 @@ for (var cc = 0; cc < 4; cc++) {
   document.write("</tr>");
 }
 document.write("</table>");
+ */
+/* ====================== Refactorizo para que sentienda mejor ====================== */
+
+// Arrays de jugadores y meses
+let jugadores = ["Ferrero", "Nadal", "Moya", "Federer"];
+let meses = ["Mayo", "Junio", "Julio"];
+
+// Arrays de puntuaciones para cada jugador
+let puntuaciones = [
+  [1000, 1250, 1650], // Puntuaciones de Ferrero en Mayo, Junio y Julio
+  [1250, 1450, 1650], // Puntuaciones de Nadal en Mayo, Junio y Julio
+  [8001, 1050, 1150], // Puntuaciones de Moya en Mayo, Junio y Julio
+  [1500, 1850, 2050], // Puntuaciones de Federer en Mayo, Junio y Julio
+];
+
+// Función para generar la tabla de puntuaciones
+function generarTabla() {
+  // Iniciar la tabla HTML con un borde
+  let tablaHTML = "<table border='1'>";
+
+  // Crear la fila de cabecera con los meses
+  tablaHTML += "<tr><th>Meses</th>";
+  meses.forEach((mes) => {
+    tablaHTML += `<th>${mes}</th>`; // Agregar cada mes como una cabecera de columna
+  });
+  tablaHTML += "</tr>";
+
+  // Crear las filas de la tabla para cada jugador
+  jugadores.forEach((jugador, indiceJugador) => {
+    tablaHTML += `<tr><td>${jugador}</td>`; // Agregar el nombre del jugador como la primera celda de la fila
+    puntuaciones[indiceJugador].forEach((puntuacion) => {
+      tablaHTML += `<td>${puntuacion}</td>`; // Agregar las puntuaciones del jugador para cada mes
+    });
+    tablaHTML += "</tr>";
+  });
+
+  // Cerrar la etiqueta de la tabla
+  tablaHTML += "</table>";
+  return tablaHTML; // Devolver la tabla HTML completa
+}
+
+// Escribir la tabla generada en el documento HTML
+document.write(generarTabla());
