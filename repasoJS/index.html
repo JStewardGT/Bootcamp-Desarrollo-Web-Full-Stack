@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="mostrarMensaje()">haz clic aquí</button>
+
+    <script>
+      function mostrarMensaje() {
+        alert("Hola mundo");
+      }
+    </script>
+
+    <hr />
+
+    <p id="demo">JavaScript can Change HTML content.</p>
+    <button onclick="document.getElementById('demo').innerHTML='Hello JavaScript!'">Click Me</button>
+
+    <hr />
+
+    <h1>My First Web Page</hl>
+    <p>My first paragraph.</p>
+    <script>
+      document.write(5 + 6);
+      // window.alert(5 + 6);
+      console.log(5 + 6);
+      console.log('-------------------------------------------');
+    </script>
+
+    <hr />
+
+    <script>
+      var x = 10
+      x **=5
+      console.log(x)
+
+      var x = 10
+      x /=5
+      console.log(x)
+
+      var x = 10
+      x %=5
+      console.log(x)
+      console.log('-------------------------------------------');
+
+    </script>
+
+
+    <script>
+      let y
+      y =5
+      y ="John"
+      y = "volvo" + 16 + 4
+      console.log(y)
+      console.log('-------------------------------------------');
+    </script>
+
+
+    <h2>JavaScript Objects</h2>
+    <p id="demo2"></p>
+    <script>
+    const person = {
+      firstName : "John",
+      lastName: "Doe",
+      age: 50,
+      eyeCo1or: "blue"
+    }
+    document.getElementById("demo2").innerHTML = person.firstName + " is " + person.age + " years old."
+    console.log('-------------------------------------------');
+    </script>
+
+    <h1>JavaScript Operators</hl>
+    <h2>The typeof Operator</h2>
+    <p>The typeof operator returns the type of a variable or an expression.</p>
+
+    <p id="demo3"></p>
+
+    <script>
+      document.getElementById("demo3").innerHTML = 
+      typeof 0 + "<br />" +
+      typeof 314 + "<br />" +
+      typeof 3.14 + "<br />" +
+      typeof (3) + "<br />" +
+      typeof (3+4) + "<br />"
+    </script>
+  </body>
+</html>
