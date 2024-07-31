@@ -21,70 +21,194 @@
 
     <hr />
 
-    <h1>My First Web Page</hl>
+    <h1>My First Web Page</h1>
     <p>My first paragraph.</p>
     <script>
       document.write(5 + 6);
       // window.alert(5 + 6);
       console.log(5 + 6);
-      console.log('-------------------------------------------');
+      console.log("-------------------------------------------");
     </script>
 
     <hr />
 
     <script>
-      var x = 10
-      x **=5
-      console.log(x)
+      var x = 10;
+      x **= 5;
+      console.log(x);
 
-      var x = 10
-      x /=5
-      console.log(x)
+      var x = 10;
+      x /= 5;
+      console.log(x);
 
-      var x = 10
-      x %=5
-      console.log(x)
-      console.log('-------------------------------------------');
-
+      var x = 10;
+      x %= 5;
+      console.log(x);
+      console.log("-------------------------------------------");
     </script>
-
 
     <script>
-      let y
-      y =5
-      y ="John"
-      y = "volvo" + 16 + 4
-      console.log(y)
-      console.log('-------------------------------------------');
+      let y;
+      y = 5;
+      y = "John";
+      y = "volvo" + 16 + 4;
+      console.log(y);
+      console.log("-------------------------------------------");
     </script>
-
 
     <h2>JavaScript Objects</h2>
     <p id="demo2"></p>
     <script>
-    const person = {
-      firstName : "John",
-      lastName: "Doe",
-      age: 50,
-      eyeCo1or: "blue"
-    }
-    document.getElementById("demo2").innerHTML = person.firstName + " is " + person.age + " years old."
-    console.log('-------------------------------------------');
+      const person = {
+        firstName: "John",
+        lastName: "Doe",
+        age: 50,
+        eyeCo1or: "blue",
+      };
+      document.getElementById("demo2").innerHTML = person.firstName + " is " + person.age + " years old.";
+      console.log("-------------------------------------------");
     </script>
 
-    <h1>JavaScript Operators</hl>
+    <h1>JavaScript Operators</h1>
     <h2>The typeof Operator</h2>
     <p>The typeof operator returns the type of a variable or an expression.</p>
 
     <p id="demo3"></p>
 
     <script>
-      document.getElementById("demo3").innerHTML = 
-      typeof 0 + "<br />" +
-      typeof 314 + "<br />" +
-      typeof 3.14 + "<br />" +
-      typeof (3) + "<br />" +
-      typeof (3+4) + "<br />"
+      document.getElementById("demo3").innerHTML =
+        typeof 0 + "<br />" + typeof 314 + "<br />" + typeof 3.14 + "<br />" + typeof 3 + "<br />" + typeof (3 + 4);
+      console.log("-------------------------------------------");
+    </script>
+
+    <hr />
+
+    <h1>Functions</h1>
+    <p id="demo4">Call a function which performs a calculation and returns the result:</p>
+
+    <script>
+      function myFuncion(p1, p2) {
+        return p1 * p2;
+      }
+
+      let result = myFuncion(4, 3);
+      document.getElementById("demo4").innerHTML = result;
+    </script>
+
+    <hr />
+
+    <h1>Javascript Functions</h1>
+    <p>Using a function as variable:</p>
+
+    <p id="demo5"></p>
+
+    <script>
+      let text = "The temperature is " + toCelsius(77) + " Celsius.";
+      document.getElementById("demo5").innerHTML = text;
+
+      function toCelsius(fahrenheit) {
+        return (5 / 9) * (fahrenheit - 32);
+      }
+    </script>
+
+    <hr />
+
+    <h1>Javascript Object</h1>
+    <h2>Creating an Object</h2>
+
+    <p id="demo6"></p>
+
+    <script>
+      // Create an Object:
+      const car = { type: "Fiat", model: "500", color: "white" };
+
+      // Display Data from the Object:
+      document.getElementById("demo6").innerHTML = "The car type is " + car.type;
+    </script>
+
+    <hr />
+
+    <h1>Create Javascript Object</h1>
+    <h2>using the new Keyword</h2>
+
+    <p id="demo7"></p>
+
+    <script>
+      // Create an Object:
+      const person2 = new Object();
+      person2.firstName = "Jhon";
+      person2.lastName = "Doe";
+      person2.age = 50;
+      person2.eyeColor = "blue";
+
+      document.getElementById("demo7").innerHTML = person2.firstName + " is " + person2.age + " years old.";
+    </script>
+
+    <hr />
+
+    <h1>Javascript Object</h1>
+    <h2>There are two ways to access a property: object.property or object["property"]</h2>
+
+    <p id="demo8"></p>
+
+    <script>
+      // Create an Object:
+      const person3 = {
+        firsName: "John",
+        lastName: "Doe",
+        id: 5566,
+      };
+
+      document.getElementById("demo8").innerHTML = "The last name is " + person3["lastName"];
+    </script>
+
+    <hr />
+
+    <h1>Javascript Object</h1>
+    <h2>Object Methods</h2>
+    <p>A method is a function definition stored as a property value.</p>
+
+    <p id="demo9"></p>
+
+    <script>
+      // Create an Object:
+      const person4 = {
+        firsName: "John",
+        lastName: "Doe",
+        id: 5566,
+        fullName: function () {
+          return this.firsName + " " + this.lastName;
+        },
+      };
+
+      document.getElementById("demo9").innerHTML = person4.fullName();
+    </script>
+
+    <hr />
+
+    <h1>Javascript Object</h1>
+    <h2>Object are Mutable</h2>
+
+    <p>Changes to copy of an object will also change the original object:</p>
+
+    <p id="demo10"></p>
+
+    <script>
+      // Create an Object:
+      const person5 = {
+        firsName: "John",
+        lastName: "Doe",
+        id: 50,
+        eyeColor: "blue"
+      };
+
+      //Create a Copy
+      const x = person;
+
+      // Chage Age
+      x.age = 10
+
+      document.getElementById("demo10").innerHTML = person5.firsName + " is " + person5.age + " years old.";
     </script>
   </body>
 </html>
