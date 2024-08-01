@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Validar si la contraseña y la repetición de la contraseña son iguales</h1>
+    <p>
+      Escribe una supuesta contraseña dos veces, una en cada campo, y pulsa el botón. Javascript te dirá si son iguales
+    </p>
+    <form name="f1">
+      <label>
+        Contraseña:
+        <input type="password" name="clave1" size="20" />
+      </label>
+      <label>
+        Repite la contraseña:
+        <input type="password" name="clave2" size="20" />
+      </label>
+      <input type="button" value="Comprobar si son iguales" onclick="comprobarClave()" />
+    </form>
+    <script src="index.js"></script>
+  </body>
+</html>
