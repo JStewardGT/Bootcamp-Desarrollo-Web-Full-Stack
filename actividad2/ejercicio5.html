@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="">
+</head>
+
+<body>
+<form action="">
+  <label for="fechaNacimiento">
+    Fecha de Nacimiento
+  </label>
+  <input type="date" name="fecha" id="fecha">
+  <button onclick="calcularedad()" type="button"> 
+    calcular 
+  </button>
+</form>
+<p id="edad">
+
+</p>
+</body>
+<script>
+  function calcularedad(){
+    const input = document.getElementById("fecha").value
+    const date = new Date()
+    const year = date.getFullYear()
+    const fechadenacimiento = new Date(input)
+    const resta = year - fechadenacimiento.getFullYear()
+    document.getElementById("edad").innerHTML="Tu edad es: " + resta
+
+  }
+</script>
+</html>

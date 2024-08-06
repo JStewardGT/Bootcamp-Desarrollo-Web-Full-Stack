@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Patente</title>
+  </head>
+  <body>
+    <h1>Registro de Patente</h1>
+
+    <label for="patent">Patente (tres letras y tres numeros):</label>
+    <input type="text" id="patent" name="patent" required />
+
+    <button type="button" onclick="validarPatente()">Registrar</button>
+
+    <p id="result"></p>
+
+    <script>
+      function validarPatente() {
+        const patentValue = document.getElementById("patent").value;
+        const result = document.getElementById("result");
+
+        if (!patentValue) {
+          alert("Todos los campos son obligatorios");
+          return;
+        }
+
+        const regex = /^[A-Za-z]{3}\d{3}$/;
+
+        if (regex.test(patentValue)) {
+          result.textContent = "Patente válida. ¡Registrada correctamente!";
+        } else {
+          result.textContent = "La patente no cumple con el formato requerido (tres letras y tres numeros).";
+        }
+      }
+    </script>
+  </body>
+</html>

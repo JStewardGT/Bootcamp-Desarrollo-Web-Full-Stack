@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Formulario validación de contraseñas</h1>
+  <form onsubmit="handleSubmit(event)">
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <label for="confirmPassword">Confirmar contraseña:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required>
+    <br>
+    <button type="submit">Enviar</button>
+  </form>
+  <p id="resultIgual"></p>
+  <p id="result"></p>
+</body>
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    if (password === confirmPassword) {
+      document.getElementById('resultIgual').innerHTML = 'Las contraseñas coinciden';
+    } else {
+      document.getElementById('resultIgual').innerHTML = 'Las contraseñas no coinciden';
+    }
+    if (password) {
+      if (password.length < 8) {
+        document.getElementById('result').innerHTML = 'La contraseña debe tener al menos 8 caracteres';
+      } else {
+        document.getElementById('result').innerHTML = 'La contraseña es válida';
+      }
+      if (!password.match(/[a-z]/) && !password.match(/[A-Z]/)) {
+        document.getElementById('result').innerHTML = 'La contraseña debe tener al menos una letra'
+      }
+      if (!password.match(/[0-9]/)) {
+        document.getElementById('result').innerHTML = 'La contraseña debe tener al menos un número'
+      }
+      if (!password.match(/[^a-zA-Z\d]/)) {
+        document.getElementById('result').innerHTML = 'La contraseña no debe tener caracteres especiales'
+      }
+    }
+  }
+</script>
+
+</html>

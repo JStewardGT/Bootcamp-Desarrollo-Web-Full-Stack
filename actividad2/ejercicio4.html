@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <form class="p-5" style="display: flex; flex-direction: column; gap: 1em" onsubmit="calcularInteres(event)">
+      <label>
+        Cédula del cliente.
+        <input class="form-control" type="number" id="cedula" />
+      </label>
+      <label>
+        Nombre del cliente.
+        <input class="form-control" type="text" id="nombre" />
+      </label>
+      <label>
+        Monto del crédito.
+        <input class="form-control" type="number" id="monto_credito" />
+      </label>
+      <label>
+        Tasa de interés mensual.
+        <input class="form-control" type="number" id="tasa_interes_mensual" />
+      </label>
+      <label>
+        Plazo en meses.
+        <input class="form-control" type="number" id="plazo_meses" />
+      </label>
+
+      <button type="submit" class="btn btn-primary">Calcular</button>
+
+      <p class="h2" id="pNombre"></p>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>No. Cuota</th>
+            <th>Saldo Anterior</th>
+            <th>Valor Cuota Fija</th>
+            <th>Abono interes</th>
+            <th>Abono Capital</th>
+            <th>Nuevo Saldo</th>
+          </tr>
+        </thead>
+        <tbody id="tabla"></tbody>
+      </table>
+    </form>
+
+    <script>
+      function calcularInteres(e) {
+        e.preventDefault();
+        const pNombre = document.getElementById("pNombre");
+        const tabla = document.getElementById("tabla");
+        const cedula = document.getElementById("cedula").value;
+        const nombre = document.getElementById("nombre").value;
+        const monto_credito = parseInt(document.getElementById("monto_credito").value);
+        const tasa_interes_mensual = parseFloat(document.getElementById("tasa_interes_mensual").value);
+        const plazo_meses = parseInt(document.getElementById("plazo_meses").value);
+
+        if (!cedula || !nombre || !monto_credito || !tasa_interes_mensual || !plazo_meses) {
+          alert("Todos los campos son obligatorios");
+          return;
+        }
+
+        const taza_interes = tasa_interes_mensual / 100;
+
+        let operacion1 = (1 + taza_interes) ** plazo_meses;
+        operacion1 = operacion1;
+
+        const cuota_fija = (monto_credito * (taza_interes * operacion1)) / (operacion1 - 1);
+
+        // console.log("cuota_fija", cuota_fija);
+
+        let saldo = monto_credito;
+        let abonoInteres = 0;
+        let abonoCapital = 0;
+        let nuevoSaldo = 0;
+        let tr = "";
+        for (let i = 1; i <= plazo_meses; i++) {
+          if (i == 1) {
+            saldo = monto_credito;
+          } else {
+            saldo = nuevoSaldo;
+          }
+          abonoInteres = saldo * taza_interes;
+          abonoCapital = cuota_fija - abonoInteres;
+          nuevoSaldo = saldo - abonoCapital;
+
+          tr += `
+          <tr>
+            <td>${i}</td>
+            <td>${saldo.toFixed(2)}</td>
+            <td>${cuota_fija.toFixed(2)}</td>
+            <td>${abonoInteres.toFixed(2)}</td>
+            <td>${abonoCapital.toFixed(2)}</td>
+            <td>${nuevoSaldo.toFixed(2)}</td>
+          </tr>`;
+
+        }
+          tabla.innerHTML = tr;
+          pNombre.innerText = `Tabla de amortización del cliente ${nombre} con cedula ${cedula}`;
+      }
+    </script>
+  </body>
+</html>

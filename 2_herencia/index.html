@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Herencia de Clase en JavaScript</h1>
+
+    <p>Usa la palabra clave "extends" para heredar todos los métodos de otra clase.</p>
+    <p>Utilice el método "super" para llamar a la función constructor de la clase principal.</p>
+
+    <p id="demo"></p>
+
+    <script>
+      class Car {
+        constructor(brand) {
+          this.carname = brand;
+        }
+        present() {
+          return "Tengo un " + this.carname;
+        }
+      }
+
+      class Model extends Car {
+        constructor(brand, mod) {
+          super(brand);
+          this.model = mod;
+        }
+        show() {
+          return this.present() + ", es un " + this.model;
+        }
+      }
+
+      let myCar = new Model("Ford", "Mustang");
+      document.getElementById("demo").innerHTML = myCar.show();
+    </script>
+  </body>
+</html>

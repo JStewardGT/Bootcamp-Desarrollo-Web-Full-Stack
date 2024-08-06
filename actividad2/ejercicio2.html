@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 2</title>
+</head>
+
+<body>
+  <form action="" style="display: flex;  flex-direction: column;" onsubmit="handleSubmit(event)">
+    <label for="name">Nombre del vendedor:</label>
+    <input type="text" id="nombre" name="nombre">
+    <label for="name">Cantidad de automoviles vendidos:</label>
+    <input type="number" id="cantidad" name="cantidad">
+    <label for="name">Precio total de automoviles vendidos:</label>
+    <input type="number" id="precio" name="precio">
+    <button type="submit">Enviar</button>
+  </form>
+  <p id="Formulario"> </p>
+</body>
+
+<script>
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const nombre = document.getElementById("nombre").value
+    const cantidad = parseInt(document.getElementById("cantidad").value)
+    const precio = parseInt(document.getElementById("precio").value)
+
+    const basico = 737000;
+    const comision = 50000;
+    const porcentaje_venta = 0.05;
+
+
+    const comisiton_total = cantidad * comision;
+    const porcentaje_venta_total = precio * porcentaje_venta;
+    const salario = comisiton_total + porcentaje_venta_total + basico;
+
+    document.getElementById("Formulario").innerHTML = "El salario de "  +nombre + " es de " + salario;
+
+  }
+
+
+</script>
+
+</html>
