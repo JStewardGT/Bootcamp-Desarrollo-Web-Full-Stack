@@ -10,23 +10,23 @@
     <form class="p-5" style="display: flex; flex-direction: column; gap: 1em" onsubmit="calcularInteres(event)">
       <label>
         Cédula del cliente.
-        <input class="form-control" type="number" id="cedula" />
+        <input class="form-control" type="number" id="cedula" min="1" required />
       </label>
       <label>
         Nombre del cliente.
-        <input class="form-control" type="text" id="nombre" />
+        <input class="form-control" type="text" id="nombre" required />
       </label>
       <label>
         Monto del crédito.
-        <input class="form-control" type="number" id="monto_credito" />
+        <input class="form-control" type="number" id="monto_credito" min="1" required />
       </label>
       <label>
         Tasa de interés mensual.
-        <input class="form-control" type="number" id="tasa_interes_mensual" />
+        <input class="form-control" type="number" id="tasa_interes_mensual" min="1" required />
       </label>
       <label>
         Plazo en meses.
-        <input class="form-control" type="number" id="plazo_meses" />
+        <input class="form-control" type="number" id="plazo_meses" min="1" required />
       </label>
 
       <button type="submit" class="btn btn-primary">Calcular</button>
@@ -96,10 +96,9 @@
             <td>${abonoCapital.toFixed(2)}</td>
             <td>${nuevoSaldo.toFixed(2)}</td>
           </tr>`;
-
         }
-          tabla.innerHTML = tr;
-          pNombre.innerText = `Tabla de amortización del cliente ${nombre} con cedula ${cedula}`;
+        tabla.innerHTML = tr;
+        pNombre.innerText = `Tabla de amortización del cliente ${nombre} con cedula ${cedula}`;
       }
     </script>
   </body>

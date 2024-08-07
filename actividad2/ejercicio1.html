@@ -10,67 +10,68 @@
   <body>
     <form action="" style="display: flex; flex-direction: column" onsubmit="handleSubmit(event)">
       <label for="name">Parcial 1:</label>
-      <input type="number" id="parcial1" name="parcial1" step=".01" required />
+      <input type="number" id="parcial1" name="parcial1" step=".01" min="1" max="5" required />
       <label for="name">Parcial 2:</label>
-      <input type="number" id="parcial2" name="parcial2" step=".01" required />
+      <input type="number" id="parcial2" name="parcial2" step=".01" min="1" max="5" required />
       <label for="name">Parcial 3:</label>
-      <input type="number" id="parcial3" name="parcial3" step=".01" required />
+      <input type="number" id="parcial3" name="parcial3" step=".01" min="1" max="5" required />
       <label for="name">Examen Final:</label>
-      <input type="number" id="exFinal" name="exFinal" step=".01" required />
+      <input type="number" id="exFinal" name="exFinal" step=".01" min="1" max="5" required />
       <label for="name">Trabajo Final:</label>
-      <input type="number" id="trFinal" name="trFinal" step=".01" required />
+      <input type="number" id="trFinal" name="trFinal" step=".01" min="1" max="5" required />
       <button type="submit">Enviar</button>
     </form>
     <p id="result"></p>
-  </body>
 
-  <script>
-    function promedio(p1, p2, p3) {
-      if (p1 >= 0 && p2 >= 0 && p3 >= 0) {
-        let result = (p1 + p2 + p3) / 3;
-        return result;
-      } else {
-        alert("Debes llenar todos los campos del formulario");
-        return false;
-      }
-    }
-
-    function porcentaje(value, porcentaje) {
-      if (value >= 0 && porcentaje) {
-        const result = value * porcentaje;
-        return result;
-      } else {
-        console.log("falta alguna variable");
-      }
-    }
-
-    function handleSubmit(e) {
-      e.preventDefault();
-      const parcialOne = parseFloat(document.getElementById("parcial1").value);
-      const parcialTwo = parseFloat(document.getElementById("parcial2").value);
-      const parcialThree = parseFloat(document.getElementById("parcial3").value);
-      const finalExam = parseFloat(document.getElementById("exFinal").value);
-      const finalWork = parseFloat(document.getElementById("trFinal").value);
-      const resulPromeidio = promedio(parcialOne, parcialTwo, parcialThree) ?? 0;
-      const porcentaje1 = porcentaje(resulPromeidio, 0.35);
-      const examenPorcentaje = porcentaje(finalExam, 0.35);
-      const trabajoPorcentaje = porcentaje(finalWork, 0.3);
-
-      if (!parcialOne || !parcialTwo || !parcialThree || !finalExam || !finalWork) {
-        alert("Todos los campos son obligatorios");
-        return;
-      }
-
-      const notalFinalValidation = () => {
-        if (porcentaje1 && examenPorcentaje && trabajoPorcentaje) {
-          return porcentaje1 + examenPorcentaje + trabajoPorcentaje;
+    <script>
+      function promedio(p1, p2, p3) {
+        if (p1 >= 0 && p2 >= 0 && p3 >= 0) {
+          let result = (p1 + p2 + p3) / 3;
+          return result;
         } else {
-          alert("Falta alguna variable");
+          alert("Debes llenar todos los campos del formulario");
+          return false;
         }
-      };
-      const notalFinal = notalFinalValidation();
-      const msg = notalFinal < 3 ? "  No aprobado" : "  Aprobado";
-      document.getElementById("result").innerHTML = "Nota final: " + notalFinal.toFixed(2) + msg;
-    }
-  </script>
+      }
+
+      function porcentaje(value, porcentaje) {
+        if (value >= 0 && porcentaje) {
+          const result = value * porcentaje;
+          return result;
+        } else {
+          console.log("falta alguna variable");
+        }
+      }
+
+      function handleSubmit(e) {
+        e.preventDefault();
+        const parcialOne = parseFloat(document.getElementById("parcial1").value);
+        const parcialTwo = parseFloat(document.getElementById("parcial2").value);
+        const parcialThree = parseFloat(document.getElementById("parcial3").value);
+        const finalExam = parseFloat(document.getElementById("exFinal").value);
+        const finalWork = parseFloat(document.getElementById("trFinal").value);
+
+        const resulPromeidio = promedio(parcialOne, parcialTwo, parcialThree) ?? 0;
+        const porcentaje1 = porcentaje(resulPromeidio, 0.35);
+        const examenPorcentaje = porcentaje(finalExam, 0.35);
+        const trabajoPorcentaje = porcentaje(finalWork, 0.3);
+
+        if (!parcialOne || !parcialTwo || !parcialThree || !finalExam || !finalWork) {
+          alert("Todos los campos son obligatorios");
+          return;
+        }
+
+        const notalFinalValidation = () => {
+          if (porcentaje1 && examenPorcentaje && trabajoPorcentaje) {
+            return porcentaje1 + examenPorcentaje + trabajoPorcentaje;
+          } else {
+            alert("Falta alguna variable");
+          }
+        };
+        const notalFinal = notalFinalValidation();
+        const msg = notalFinal < 3 ? "  No aprobado" : "  Aprobado";
+        document.getElementById("result").innerHTML = "Nota final: " + notalFinal.toFixed(2) + msg;
+      }
+    </script>
+  </body>
 </html>

@@ -8,15 +8,19 @@
   <body>
     <h1>Registro de Patente</h1>
 
-    <label for="patent">Patente (tres letras y tres numeros):</label>
-    <input type="text" id="patent" name="patent" required />
+    <form onsubmit="validarPatente(event)">
+      <label for="patent">Patente (tres letras y tres numeros):</label>
+      <input type="text" id="patent" name="patent" required />
 
-    <button type="button" onclick="validarPatente()">Registrar</button>
+      <button type="submit">Registrar</button>
+    </form>
 
     <p id="result"></p>
 
     <script>
-      function validarPatente() {
+      function validarPatente(e) {
+        e.preventDefault();
+
         const patentValue = document.getElementById("patent").value;
         const result = document.getElementById("result");
 

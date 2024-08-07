@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Class Getter/Setter</h1>
+    <p>
+      a demonstration of how to add getters and setters in a class, and how to use the getter to get the property value
+    </p>
+    <p id="demo"></p>
+
+    <script>
+      class Car {
+        constructor(brand) {
+          this._cname = brand;
+        }
+        get cname() {
+          return this._cname;
+        }
+        set cname(x) {
+          this._cname = x;
+        }
+      }
+
+      const myCar = new Car("Ford");
+      document.getElementById("demo").innerHTML = myCar.cname;
+    </script>
+
+    <p id="demo"></p>
+  </body>
+</html>

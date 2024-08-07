@@ -1,59 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IMC</title>
-</head>
-<body>
-    <form action="" style="display: flex;  flex-direction: column;" onsubmit="Quetelet(event)">
-    <label for="name">Nombre del paciente:</label>
-    <input type="text" id="name" name="name">
-    <label for="name">Peso en Kilogramos:</label>
-    <input type="number" id="kg" name="kg" step=".01">
-    <label for="name">Estatura en metros:</label>
-    <input type="number" id="mt" name="mt" step=".01">    
-    <button type="submit">Enviar</button>
-  </form>
-  <p id="result"> </p>
+  </head>
+  <body>
+    <form action="" style="display: flex; flex-direction: column" onsubmit="Quetelet(event)">
+      <label for="name">Nombre del paciente:</label>
+      <input type="text" id="name" name="name" required />
 
-  <script>
-    function Quetelet(e){
+      <label for="name">Peso en Kilogramos:</label>
+      <input type="number" id="kg" name="kg" step=".01" min="1" required />
+
+      <label for="name">Estatura en metros:</label>
+      <input type="number" id="mt" name="mt" step=".01" min="1" required />
+
+      <button type="submit">Enviar</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+      function Quetelet(e) {
         e.preventDefault();
-        const person = document.getElementById("name").value
-        const peso = parseFloat(document.getElementById("kg").value)
-        const talla =parseFloat(document.getElementById("mt").value)
-        const indice = imc(peso,talla);
+        const person = document.getElementById("name").value;
+        const peso = parseFloat(document.getElementById("kg").value);
+        const talla = parseFloat(document.getElementById("mt").value);
+        const indice = imc(peso, talla);
         const mensaje = categoria(indice);
 
-        document.getElementById("result").innerHTML = "Hola " + person + "<br> Tu peso es de " + peso + "KG. Según tu peso, la categoría que te corresponde es: " + mensaje ;
+        if (!person || !peso || !talla) {
+          alert("Debes llenar todos los campos del formulario");
+          return false;
+        }
 
-    }
+        document.getElementById("result").innerHTML =
+          "Hola " +
+          person +
+          "<br> Tu peso es de " +
+          peso +
+          "KG. Según tu peso, la categoría que te corresponde es: " +
+          mensaje;
+      }
 
-    function imc(peso,talla){
-        const estatura= talla ** 2;
-        const imc_Q = peso / estatura
-        return imc_Q;        
-    }
+      function imc(peso, talla) {
+        const estatura = talla ** 2;
+        const imc_Q = peso / estatura;
+        return imc_Q;
+      }
 
-    function categoria(indice){
-        let msg="";
-        if (indice < 18.5){
-            msg="Por debajo del peso 🤨";
-        }else if (indice >= 18.5 && indice <= 24.9){
-            msg="Saludable 😏🙂";
-        }else if (indice >= 25.0 && indice <= 29.9){
-            msg="Con sobrepeso 😒";
-        }else if (indice >= 30.0 && indice <= 39.9){
-            msg="Obeso 😲";
-        }else if (indice > 40){
-            msg="Obesidad Mórbida 😱";
+      function categoria(indice) {
+        let msg = "";
+        if (indice < 18.5) {
+          msg = "Por debajo del peso 🤨";
+        } else if (indice >= 18.5 && indice <= 24.9) {
+          msg = "Saludable 😏🙂";
+        } else if (indice >= 25.0 && indice <= 29.9) {
+          msg = "Con sobrepeso 😒";
+        } else if (indice >= 30.0 && indice <= 39.9) {
+          msg = "Obeso 😲";
+        } else if (indice > 40) {
+          msg = "Obesidad Mórbida 😱";
         }
 
         return msg;
-    }
-
-  </script>
-
-</body>
+      }
+    </script>
+  </body>
 </html>

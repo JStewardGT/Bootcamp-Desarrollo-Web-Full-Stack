@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
-  <h1>Formulario de fechas</h1>
-  <form onsubmit="handleSubmit(event)">
-    <label for="fecha1">Fecha uno:</label>
-    <input type="date" id="fecha1" name="fecha">
-    <label for="fecha2">Fecha dos:</label>
-    <input type="date" id="fecha2" name="fecha">
-    <button type="submit">Comparar fechas</button>
-  </form>
-  <p id="result"></p>
-</body>
-<script>
-  function handleSubmit(event) {
-    event.preventDefault();
-    const fecha1 = document.getElementById('fecha1').value;
-    const fecha2 = document.getElementById('fecha2').value;
-    const fecha1Date = new Date(fecha1);
-    const fecha2Date = new Date(fecha2);
-    if (fecha1Date && fecha2Date) {
-      if (fecha1Date > fecha2Date) {
-        document.getElementById('result').innerHTML = 'La fecha 1 ' + fecha1 + ' es mayor que la fecha 2 ' + fecha2;
-      } else if (fecha1Date < fecha2Date) {
-        document.getElementById('result').innerHTML = 'La fecha 1 ' + fecha1 + ' es menor que la fecha 2 ' + fecha2;
-      } else if (fecha1Date === fecha2Date) {
-        document.getElementById('result').innerHTML = 'Las fechas son iguales'
+  <body>
+    <h1>Formulario de fechas</h1>
+    <form onsubmit="handleSubmit(event)">
+      <label for="fecha1">Fecha uno:</label>
+      <input type="date" id="fecha1" name="fecha" required />
+      <label for="fecha2">Fecha dos:</label>
+      <input type="date" id="fecha2" name="fecha" required />
+      <button type="submit">Comparar fechas</button>
+    </form>
+    <p id="result"></p>
+  </body>
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      const fecha1 = document.getElementById("fecha1").value;
+      const fecha2 = document.getElementById("fecha2").value;
+      if (!fecha1 || !fecha2) {
+        alert("Todos los campos son obligatorios");
+        return;
       }
-    } else {
-      document.getElementById('result').innerHTML = 'Por favor ingrese ambas fechas';
-    }
-  }
-</script>
 
+      const fecha1Date = new Date(fecha1);
+      const fecha2Date = new Date(fecha2);
+
+      if (fecha1Date && fecha2Date) {
+        if (fecha1Date > fecha2Date) {
+          document.getElementById("result").innerHTML = "La fecha 1 " + fecha1 + " es mayor que la fecha 2 " + fecha2;
+        } else if (fecha1Date < fecha2Date) {
+          document.getElementById("result").innerHTML = "La fecha 1 " + fecha1 + " es menor que la fecha 2 " + fecha2;
+        } else if (fecha1Date === fecha2Date) {
+          document.getElementById("result").innerHTML = "Las fechas son iguales";
+        }
+      } else {
+        document.getElementById("result").innerHTML = "Por favor ingrese ambas fechas";
+      }
+    }
+  </script>
 </html>
