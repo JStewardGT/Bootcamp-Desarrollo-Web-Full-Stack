@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Notas</title>
+</head>
+
+<body>
+    <form action="" style="display: flex;  flex-direction: column;" onsubmit="handleSubmit(event)">
+        <label for="name">Parcial 1:</label>
+        <input type="number" id="parcial1" name="parcial1" step=".01">
+        <label for="name">Parcial 2:</label>
+        <input type="number" id="parcial2" name="parcial2" step=".01">
+        <label for="name">Parcial 3:</label>
+        <input type="number" id="parcial3" name="parcial3" step=".01">
+        <label for="name">Examen Final:</label>
+        <input type="number" id="exFinal" name="exFinal" step=".01">
+        <label for="name">Trabajo Final:</label>
+        <input type="number" id="trFinal" name="trFinal" step=".01">
+        <button type="submit">Enviar</button>
+    </form>
+    <p id="result"> </p>
+    <script>
+        class CalculaNota {
+            constructor(P1, P2, P3, Exf, Tjf) {
+                this.P1 = P1;
+                this.P2 = P2;
+                this.P3 = P3;
+                this.Exf = Exf;
+                this.Tjf = Tjf;
+            }
+
+            promedio(...notas) {
+                return notas.reduce((ac, nota) => ac + nota, 0) / notas.length;
+            }
+
+            porcentaje(value, porcentaje) {
+                return value * porcentaje;
+            }
+
+            calculoFinal() {
+                const parciales = this.promedio(this.P1, this.P2, this.P3)
+                const pcjParciales = this.porcentaje(parciales, 0.35)
+                const pcjExmFinal = this.porcentaje(this.Exf, 0.35)
+                const pcjTbjFinal = this.porcentaje(this.Tjf, 0.30)
+                const notaFinal = pcjParciales + pcjExmFinal + pcjTbjFinal
+                return notaFinal
+            }
+
+            resultado() {
+                const notaFinal = this.calculoFinal()
+                const msg = notaFinal < 3 ? "  No aprobado 😓" : "  Aprobado 🤩";
+                document.getElementById("result").innerHTML = "Nota final: " + notaFinal.toFixed(2) + msg;
+            }
+        }
+
+        function handleSubmit(e) {
+            const parcialOne = parseFloat(document.getElementById('parcial1').value);
+            const parcialTwo = parseFloat(document.getElementById('parcial2').value);
+            const parcialThree = parseFloat(document.getElementById('parcial3').value);
+            const finalExam = parseFloat(document.getElementById('exFinal').value);
+            const finalWork = parseFloat(document.getElementById('trFinal').value);
+            e.preventDefault();
+
+            if (parcialOne <0 || parcialTwo <0 || parcialThree <0 || finalExam <0 || finalWork <0) {
+                alert("Es necesario llenar todos los campos")
+                return
+            }
+
+            const nuevaNota = new CalculaNota(parcialOne,parcialTwo,parcialThree,finalExam,finalWork)
+            nuevaNota.resultado()
+        }
+    </script>
+</body>
+
+</html>
