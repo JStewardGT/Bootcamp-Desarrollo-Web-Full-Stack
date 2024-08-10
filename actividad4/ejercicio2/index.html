@@ -6,24 +6,88 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ejercicio 2</title>
+    <title>Calculadora de Áreas</title>
+
+    <style>
+      .card .card-content .card-title {
+        margin-bottom: 0.8em;
+        font-weight: 500;
+      }
+      .scale-transition.scale-out {
+        height: 0;
+        margin: 0;
+      }
+    </style>
   </head>
-  <body>
-    <h1>Taller Individual 2</h1>
-    <h2>Ejercicio 2</h2>
+  <body class="container">
+    <h1>Ejercicio 2</h1>
+    <h2>Calculadora de Áreas</h2>
     <p>
-      Elaborar un programa que ofrezca un menú de opciones, mediante el cual Se pueda escoger el área de la figuras
-      geométricas:triángulos,cuadrado, rectangulo y circulo. Una vez seleccionada la opción, que permita solicitar Y
+      Elaborar un programa que ofrezca un menú de opciones, mediante el cual Se pueda escoger el área de las figuras
+      geométricas: triángulos, cuadrado, rectángulo y círculo. Una vez seleccionada la opción, que permita solicitar Y
       leer el nombre de la figura y los datos necesarios para calcular el área Correspondiente e imprimir el nombre de
-      la figura y el área
+      la figura y el área.
     </p>
 
-    <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <form id="figuraForm">
+      <div class="row">
+        <div class="col s12 m8 offset-m2">
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">Selecciona la Figura</span>
+              <div class="row">
+                <div class="input-field col s10 offset-s1">
+                  <select id="tipoFigura" name="tipoFigura">
+                    <option value="" disabled selected>Selecciona</option>
+                    <option value="triangulo">Triángulo</option>
+                    <option value="cuadrado">Cuadrado</option>
+                    <option value="rectangulo">Rectángulo</option>
+                    <option value="circulo">Círculo</option>
+                  </select>
+                  <label>Tipo de Figura:</label>
+                </div>
+
+                <!-- Inputs para los datos -->
+                <div class="input-field col s10 offset-s1 scale-transition scale-out div-input" id="baseDiv">
+                  <label for="base">Base:</label>
+                  <input type="number" id="base" name="base" min="0" />
+                </div>
+
+                <div class="input-field col s10 offset-s1 scale-transition scale-out div-input" id="alturaDiv">
+                  <label for="altura">Altura:</label>
+                  <input type="number" id="altura" name="altura" min="0" />
+                </div>
+
+                <div class="input-field col s10 offset-s1 scale-transition scale-out div-input" id="ladoDiv">
+                  <label for="lado">Lado:</label>
+                  <input type="number" id="lado" name="lado" min="0" />
+                </div>
+
+                <div class="input-field col s10 offset-s1 scale-transition scale-out div-input" id="radioDiv">
+                  <label for="radio">Radio:</label>
+                  <input type="number" id="radio" name="radio" min="0" />
+                </div>
+              </div>
+            </div>
+            <div class="card-action">
+              <button class="btn waves-effect waves-light" type="submit">
+                Calcular Área
+                <i class="material-icons right">send</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <h4 id="resultado" class="scale-transition scale-out"></h4>
+
+    <!--Import materialize.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="index.js"></script>
   </body>
 </html>

@@ -101,13 +101,9 @@ function handleFormSubmit(event) {
 
   let empleado;
   if (tipo === "hora") {
-    empleado = new EmpleadoPorHora(
-      nombre,
-      parseFloat(inputs.horasTrabajadas.value),
-      parseFloat(inputs.cuotaPorHora.value)
-    );
+    empleado = new EmpleadoPorHora(nombre, parseInt(inputs.horasTrabajadas.value), parseInt(inputs.cuotaPorHora.value));
   } else if (tipo === "asalariado") {
-    empleado = new EmpleadoAsalariado(nombre, parseFloat(inputs.sueldoMensual.value));
+    empleado = new EmpleadoAsalariado(nombre, parseInt(inputs.sueldoMensual.value));
   }
 
   resultado.textContent = `El salario de ${empleado.nombre} es: ${empleado.calcularSalario()}`;
