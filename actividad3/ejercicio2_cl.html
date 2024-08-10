@@ -1,62 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <form action="" style="display: flex; flex-direction: column" onsubmit="handleSubmit(event)">
+      <label for="name">Nombre del vendedor:</label>
+      <input type="text" id="nombre" name="nombre" required />
 
-<body>
-  <form action="" style="display: flex; flex-direction: column" onsubmit="handleSubmit(event)">
-    <label for="name">Nombre del vendedor:</label>
-    <input type="text" id="nombre" name="nombre" required />
+      <label for="name">Cantidad de automoviles vendidos:</label>
+      <input type="number" id="cantidad" name="cantidad" min="1" required />
 
-    <label for="name">Cantidad de automoviles vendidos:</label>
-    <input type="number" id="cantidad" name="cantidad" min="1" required />
+      <label for="name">Precio total de automoviles vendidos:</label>
+      <input type="number" id="precio" name="precio" min="1" required />
 
-    <label for="name">Precio total de automoviles vendidos:</label>
-    <input type="number" id="precio" name="precio" min="1" required />
-
-    <button type="submit">Enviar</button>
-  </form>
-  <p id="Formulario"></p>
-</body>
-<script>
-  class Vendedor {
-    constructor(nombre, cantCarros, precioTotal) {
-      this.nombre = nombre;
-      this.cantCarros = cantCarros;
-      this.precioTotal = precioTotal;
-      this.basico = 737000;
-      this.comision = 50000;
-      this.porcentaje = 0.05;
+      <button type="submit">Enviar</button>
+    </form>
+    <p id="Formulario"></p>
+  </body>
+  <script>
+    class Vendedor {
+      constructor(nombre, cantCarros, precioTotal) {
+        this.nombre = nombre;
+        this.cantCarros = cantCarros;
+        this.precioTotal = precioTotal;
+        this.basico = 737000;
+        this.comision = 50000;
+        this.porcentaje = 0.05;
+      }
+      calculoSueldo() {
+        const comisionTotal = this.cantCarros * this.comision;
+        const porcentajeVenta = this.precioTotal * this.porcentaje;
+        const salario = comisionTotal + porcentajeVenta + this.basico;
+        return salario;
+      }
+      message() {
+        const msg = "El salario de " + this.nombre + " es de " + this.calculoSueldo();
+        document.getElementById("Formulario").innerHTML = msg;
+      }
     }
-    calculoSueldo() {
-      const comisionTotal = this.cantCarros * this.comision;
-      const porcentajeVenta = this.precioTotal * this.porcentaje;
-      const salario = comisionTotal + porcentajeVenta + this.basico;
-      return salario;
-    }
-    message() {
-      const msg = 'El salario de ' + this.nombre + ' es de ' + this.calculoSueldo();
-      document.getElementById('Formulario').innerHTML = msg;
-    }
-  }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const nombre = document.getElementById("nombre").value;
-    const cantidad = parseInt(document.getElementById("cantidad").value);
-    const precio = parseInt(document.getElementById("precio").value);
-    if (!nombre || !cantidad || !precio) {
-      alert("Todos los campos son obligatorios");
-      return;
+    function handleSubmit(e) {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value;
+      const cantidad = parseInt(document.getElementById("cantidad").value);
+      const precio = parseInt(document.getElementById("precio").value);
+      if (!nombre || !cantidad || !precio) {
+        alert("Todos los campos son obligatorios");
+        return;
+      }
+      const user = new Vendedor(nombre, cantidad, precio);
+      user.message();
     }
-    const user = new Vendedor(nombre, cantidad, precio);
-    user.message();
-  }
-</script>
-
+  </script>
 </html>

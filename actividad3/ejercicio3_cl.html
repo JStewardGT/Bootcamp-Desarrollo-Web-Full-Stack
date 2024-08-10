@@ -1,66 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IMC</title>
-</head>
-<body>
-    <form action="" style="display: flex;  flex-direction: column;" onsubmit="Quetelet(event)">
-    <label for="name">Nombre del paciente:</label>
-    <input type="text" id="name" name="name" required>
-    <label for="name">Peso en Kilogramos:</label>
-    <input type="number" id="kg" name="kg" step=".01" required min="1">
-    <label for="name">Estatura en metros:</label>
-    <input type="number" id="mt" name="mt" step=".01" required min="1">    
-    <button type="submit">Enviar</button>
-  </form>
-  <p id="result"> </p>
+  </head>
+  <body>
+    <form action="" style="display: flex; flex-direction: column" onsubmit="Quetelet(event)">
+      <label for="name">Nombre del paciente:</label>
+      <input type="text" id="name" name="name" required />
+      <label for="name">Peso en Kilogramos:</label>
+      <input type="number" id="kg" name="kg" step=".01" required min="1" />
+      <label for="name">Estatura en metros:</label>
+      <input type="number" id="mt" name="mt" step=".01" required min="1" />
+      <button type="submit">Enviar</button>
+    </form>
+    <p id="result"></p>
 
-  <script>
-    class Person {
-        constructor(nombre, peso, estatura){
-            this.nombre = nombre
-            this.peso = peso
-            this.estatura = estatura
+    <script>
+      class Person {
+        constructor(nombre, peso, estatura) {
+          this.nombre = nombre;
+          this.peso = peso;
+          this.estatura = estatura;
         }
-        calcularIMC(){
-            return this.peso/this.estatura**2
+        calcularIMC() {
+          return this.peso / this.estatura ** 2;
+        }
+        definirCategoria() {
+          this.imc = this.calcularIMC();
+          console.log(this.imc);
+          let msg = "";
+          if (this.imc < 18.5) {
+            msg = " Por debajo del peso 🤨";
+          } else if (this.imc >= 18.5 && this.imc < 25) {
+            msg = " Saludable 😏🙂";
+          } else if (this.imc >= 25.0 && this.imc <= 29.9) {
+            msg = " Con sobrepeso 😒";
+          } else if (this.imc >= 30.0 && this.imc <= 39.9) {
+            msg = " Obeso 😲";
+          } else if (this.imc > 40) {
+            msg = " Obesidad Mórbida 😱";
+          }
 
+          return msg;
         }
-        definirCategoria(){
-            this.imc = this.calcularIMC()  
-            console.log(this.imc)
-            let msg="";
-        if (this.imc < 18.5){
-            msg=" Por debajo del peso 🤨";
-        }else if (this.imc >= 18.5 && this.imc < 25){
-            msg=" Saludable 😏🙂";
-        }else if (this.imc >= 25.0 && this.imc <= 29.9){
-            msg=" Con sobrepeso 😒";
-        }else if (this.imc >= 30.0 && this.imc <= 39.9){
-            msg=" Obeso 😲";
-        }else if (this.imc > 40){
-            msg=" Obesidad Mórbida 😱";
+      }
+      function Quetelet(e) {
+        e.preventDefault();
+        const nombre = document.getElementById("name").value;
+        const peso = parseFloat(document.getElementById("kg").value);
+        const talla = parseFloat(document.getElementById("mt").value);
+        if (!nombre || !peso || !talla) {
+          alert("Es necesario llenar todos los campos");
+          return;
         }
-
-        return msg;
-        }
-    }
-    function Quetelet(e){
-        e.preventDefault()
-        const nombre = document.getElementById("name").value
-        const peso = parseFloat(document.getElementById("kg").value)
-        const talla =parseFloat(document.getElementById("mt").value)
-        if (!nombre || !peso || !talla){
-            alert ("Es necesario llenar todos los campos")
-            return 
-        }
-        const persona = new Person (nombre, peso, talla)
-        document.getElementById("result").innerHTML = persona.nombre + persona.definirCategoria()
-    }
-
-  </script>
-
-</body>
+        const persona = new Person(nombre, peso, talla);
+        document.getElementById("result").innerHTML = persona.nombre + persona.definirCategoria();
+      }
+    </script>
+  </body>
 </html>
