@@ -13,7 +13,6 @@ const Empleados = () => {
           throw new Error("Error al obtener los datos");
         }
         const data = await response.json();
-        console.log("🚀 ~ useEffect ~ data:", data);
         setEmpleados(data.data);
       } catch (error) {
         console.error(error);
