@@ -1,0 +1,61 @@
+body {
+  background-color: papayawhip;
+}
+
+.contenedorCajas {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* <-- Esta línea lo hace responsive */
+}
+
+.contenerodTexto {
+  display: flex;
+  flex-direction: column;
+  width: 15em;
+  border-radius: 10px;
+  margin: 2em;
+  text-align: center;
+  background-color: #f5f5f5;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 1, 0.6);
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.contenerodTexto:hover {
+  transform: translateY(-3px);
+  box-shadow: 10px 15px 20px 5px rgba(0, 0, 1, 0.6);
+}
+
+.contenedorImagen {
+  width: 100%;
+}
+
+.contenerodTitulo {
+  font-weight: bold;
+  font-size: 1.4em;
+  margin: 0.5em;
+}
+
+.contenerodParrafo {
+  font-size: 1em;
+  font-weight: normal;
+  padding: 0.5em;
+}
+
+.contenerodBoton {
+  margin: auto 1em 2em;
+  display: inline-block;
+  background-color: #fff;
+  border-color: darkgoldenrod;
+  color: darkgoldenrod;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  border-radius: 15em;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.contenerodBoton:hover {
+  background-color: darkgoldenrod;
+  color: #fff;
+}
