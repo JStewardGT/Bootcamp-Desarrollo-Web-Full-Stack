@@ -8,6 +8,7 @@ const CreateEmployee = () => {
   const [nombres, setNombres] = useState("");
   const [apellidos, setApellidos] = useState("");
   const [email, setEmail] = useState("");
+  const [direccion, setDireccion] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -92,6 +93,19 @@ const CreateEmployee = () => {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group mb-3">
+              <label htmlFor="direccion" className="form-label">
+                Dirección
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="direccion"
+                value={direccion}
+                onChange={(e) => setDireccion(e.target.value)}
                 required
               />
             </div>

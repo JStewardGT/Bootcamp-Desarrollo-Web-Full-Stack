@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Page from "../layouts/Page";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -8,6 +8,29 @@ const EditEmployee = () => {
   const [nombres, setNombres] = useState("");
   const [apellidos, setApellidos] = useState("");
   const [email, setEmail] = useState("");
+  const [direccion, setDireccion] = useState("");
+
+  const { id } = useParams();
+
+  const getEmployee = async () => {
+    const response = await axios.get(`https://wc.sirees.online/api/v2/empleado/${id}`);
+
+    try {
+      if (response.status === 200) {
+        console.log("🚀 ~ getEmployee ~ response:", response.data);
+        const empleado = response.data.data;
+        setNombres(empleado.nombres);
+        setApellidos(empleado.apellidos);
+        setEmail(empleado.email);
+      }
+    } catch (error) {
+      console.log("🚀 ~ getEmployee ~ error:", error);
+    }
+  };
+
+  useEffect(() => {
+    getEmployee();
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,9 +55,6 @@ const EditEmployee = () => {
               text: "Registro guardado correctamente",
               icon: "success",
             });
-            setNombres("");
-            setApellidos("");
-            setEmail("");
           }
         } catch (error) {
           console.log("🚀 ~ handleSubmit ~ error:", error);
@@ -92,6 +112,19 @@ const EditEmployee = () => {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group mb-3">
+              <label htmlFor="direccion" className="form-label">
+                Dirección
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="direccion"
+                value={direccion}
+                onChange={(e) => setDireccion(e.target.value)}
                 required
               />
             </div>
