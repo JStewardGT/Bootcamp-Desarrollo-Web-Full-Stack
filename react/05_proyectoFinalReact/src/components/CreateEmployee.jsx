@@ -36,6 +36,7 @@ const CreateEmployee = () => {
             setNombres("");
             setApellidos("");
             setEmail("");
+            setDireccion("");
           }
         } catch (error) {
           console.log("🚀 ~ handleSubmit ~ error:", error);
