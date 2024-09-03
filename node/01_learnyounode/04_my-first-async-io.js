@@ -17,7 +17,8 @@ fs.readFile(filePath, 'utf8', (err, data) => {
 
 Crea un archivo llamado mi-primer-async-io.js.
 
-Escribe un programa que utilice una única operación asíncrona del sistema de archivos para leer un archivo e imprimir el número de nuevas líneas que contiene en la consola (stdout), similar a ejecutar cat archivo | wc -l.
+Escribe un programa que utilice una única operación asíncrona del sistema de archivos para leer un archivo e imprimir
+el número de nuevas líneas que contiene en la consola (stdout), similar a ejecutar cat archivo | wc -l.
 
 La ruta completa al archivo a leer se proporcionará como primer argumento de la línea de comandos.
 
@@ -25,16 +26,21 @@ La ruta completa al archivo a leer se proporcionará como primer argumento de la
 
 # CONSEJOS
 
-La solución a este problema es casi la misma que la del problema anterior, excepto que ahora debes hacerlo a la manera de Node.js: asíncrono.
+La solución a este problema es casi la misma que la del problema anterior, excepto que ahora debes hacerlo a la manera
+de Node.js: asíncrono.
 
-En lugar de fs.readFileSync() querrás usar fs.readFile() y en lugar de usar el valor de retorno de este método necesitas recoger el valor de una función callback que pasas como segundo argumento. Para aprender más sobre callbacks, echa un vistazo a:
+En lugar de fs.readFileSync() querrás usar fs.readFile() y en lugar de usar el valor de retorno de este método
+necesitas recoger el valor de una función callback que pasas como segundo argumento. Para aprender más sobre callbacks,
+echa un vistazo a:
 (https://github.com/maxogden/art-of-node#callbacks).
 
 Recuerda que los callbacks idiomáticos de Node.js normalmente tienen la firma
 
 function callback (err, data) { /* ... *\\/ }
 
-por lo que puedes comprobar si se ha producido un error comprobando si el primer argumento es verdadero. Si no hay error, deberías tener tu objeto Buffer como segundo argumento. Al igual que con readFile(), puede suministrar 'utf8' como segundo argumento y poner la llamada de retorno como tercer argumento y obtendrá una Cadena en lugar de un Buffer.
+por lo que puedes comprobar si se ha producido un error comprobando si el primer argumento es verdadero. Si no hay
+error, deberías tener tu objeto Buffer como segundo argumento. Al igual que con readFile(), puede suministrar 'utf8'
+como segundo argumento y poner la llamada de retorno como tercer argumento y obtendrá una Cadena en lugar de un Buffer.
 
 La documentación sobre el módulo fs se puede encontrar apuntando su navegador aquí:
 file://C:\Users\Johan\AppData\Roaming\nvm\v20.9.0\node_modules\learnyounod e\docs-nodejs\fs.html

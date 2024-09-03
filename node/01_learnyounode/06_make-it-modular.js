@@ -16,17 +16,27 @@ mymodule(dir, ext, (err, files) => {
 
 Crea dos archivos llamados make-it-modular.js y mymodule.js.
 
-Este problema es igual que el anterior pero introduce el concepto de módulos. Necesitarás crear dos archivos para resolverlo.
+Este problema es igual que el anterior pero introduce el concepto de módulos. Necesitarás crear dos archivos para
+resolverlo.
 
-Crea un programa que imprima una lista de archivos en un directorio dado, filtrados por la extensión de los archivos. El primer argumento es el nombre del directorio y el segundo argumento es el filtro de extensión. Imprime la lista de ficheros (un fichero por línea) en la consola. Debe utilizar E/S asíncrona.
+Crea un programa que imprima una lista de archivos en un directorio dado, filtrados por la extensión de los archivos.
+El primer argumento es el nombre del directorio y el segundo argumento es el filtro de extensión. Imprime la lista de
+ficheros (un fichero por línea) en la consola. Debe utilizar E/S asíncrona.
 
-Debes escribir un archivo de módulo (mymodule.js) para hacer la mayor parte del trabajo. El módulo debe exportar una única función que tome tres argumentos: el nombre del directorio, la cadena de extensión del nombre del archivo y tu función de llamada de retorno, en ese orden. No alteres la cadena de extensión del nombre de archivo de ninguna manera antes de pasársela a tu módulo.
+Debes escribir un archivo de módulo (mymodule.js) para hacer la mayor parte del trabajo. El módulo debe exportar una
+única función que tome tres argumentos: el nombre del directorio, la cadena de extensión del nombre del archivo y tu
+función de llamada de retorno, en ese orden. No alteres la cadena de extensión del nombre de archivo de ninguna manera
+antes de pasársela a tu módulo.
 
-La función callback debe ser llamada usando la convención idiomática node(err, data). Esta convención estipula que a menos que haya un error, el primer argumento pasado a la llamada de retorno será null, y el segundo serán tus datos. En este ejercicio, los datos serán su lista filtrada de archivos, como una matriz. Si recibes un error, por ejemplo de tu llamada a fs.readdir(), la llamada de retorno debe ser llamada con el error como primer y único argumento.
+La función callback debe ser llamada usando la convención idiomática node(err, data). Esta convención estipula que a
+menos que haya un error, el primer argumento pasado a la llamada de retorno será null, y el segundo serán tus datos.
+En este ejercicio, los datos serán su lista filtrada de archivos, como una matriz. Si recibes un error, por ejemplo de
+tu llamada a fs.readdir(), la llamada de retorno debe ser llamada con el error como primer y único argumento.
 
 No debes imprimir directamente a la consola desde tu archivo de módulo, sólo desde tu programa original.
 
-En el caso de que se produzca un error en tu programa original, simplemente compruébalo e imprime un mensaje informativo en la consola.
+En el caso de que se produzca un error en tu programa original, simplemente compruébalo e imprime un mensaje
+informativo en la consola.
 
 Estas cuatro cosas son el contrato que su módulo debe seguir.
 
@@ -35,25 +45,31 @@ Estas cuatro cosas son el contrato que su módulo debe seguir.
   3. No cambies nada más, como las variables globales o stdout.
   4. Maneja todos los errores que puedan ocurrir y pásalos al callback.
 
-El beneficio de tener un contrato es que tu módulo puede ser usado por cualquiera que espere este contrato. Así que tu módulo podría ser usado por cualquiera que haga learnyounode, o el verificador, y simplemente funcionar.
+El beneficio de tener un contrato es que tu módulo puede ser usado por cualquiera que espere este contrato. Así que tu
+módulo podría ser usado por cualquiera que haga learnyounode, o el verificador, y simplemente funcionar.
 
 ─────────────────────────────────────────────────────────────────────────────
 
 ## CONSEJOS
 
-Crea un nuevo módulo creando un nuevo archivo (mymodule.js) que sólo contenga tu función de lectura y filtrado de directorios. Para definir una única función de exportación, asigna tu función al objeto module.exports, sobreescribiendo lo que ya está allí:
+Crea un nuevo módulo creando un nuevo archivo (mymodule.js) que sólo contenga tu función de lectura y filtrado de
+directorios. Para definir una única función de exportación, asigna tu función al objeto module.exports,
+sobreescribiendo lo que ya está allí:
 
   module.exports = function (args) { /* ... *\\/ }
 
 O puedes usar una función con nombre y asignarle el nombre.
 
-Para usar tu nuevo módulo en tu archivo de programa original (make-it-modular.js), usa la llamada require() de la misma manera que require('fs') para cargar el módulo fs. La única diferencia es que para los módulos locales debe anteponerse el prefijo './'. Por lo tanto, si su archivo se llama mymodule.js entonces
+Para usar tu nuevo módulo en tu archivo de programa original (make-it-modular.js), usa la llamada require() de la misma
+manera que require('fs') para cargar el módulo fs. La única diferencia es que para los módulos locales debe anteponerse
+el prefijo './'. Por lo tanto, si su archivo se llama mymodule.js entonces
 
   const mymodule = require('./mymodule.js')
 
 El '.js' es opcional y a menudo se omite.
 
-Ahora tienes el objeto module.exports en tu módulo asignado a la variable mymodule. Como estás exportando una única función, ¡mimodulo es una función que puedes llamar!
+Ahora tienes el objeto module.exports en tu módulo asignado a la variable mymodule. Como estás exportando una única
+función, ¡mimodulo es una función que puedes llamar!
 
 También ten en cuenta que es idiomático comprobar errores y hacer early-returns dentro de funciones callback:
 

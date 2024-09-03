@@ -19,11 +19,15 @@ fs.readdir(directoryPath, (err, files) => {
 
 Crea un archivo llamado filtrado-ls.js.
 
-Crea un programa que imprima una lista de archivos en un directorio dado, filtrados por la extensión de los archivos. Se te proporcionará un nombre de directorio como primer argumento de tu programa (por ejemplo, '/ruta/a/dir/') y una extensión de archivo por la que filtrar como segundo argumento.
+Crea un programa que imprima una lista de archivos en un directorio dado, filtrados por la extensión de los archivos.
+Se te proporcionará un nombre de directorio como primer argumento de tu programa (por ejemplo, '/ruta/a/dir/') y una
+extensión de archivo por la que filtrar como segundo argumento.
 
-Por ejemplo, si recibes 'txt' como segundo argumento, tendrás que filtrar la lista para que sólo aparezcan archivos que terminen en .txt. Tenga en cuenta que el segundo argumento no irá precedido de '.'.
+Por ejemplo, si recibes 'txt' como segundo argumento, tendrás que filtrar la lista para que sólo aparezcan archivos que
+terminen en .txt. Tenga en cuenta que el segundo argumento no irá precedido de '.'.
 
-Tenga en cuenta que los primeros argumentos de su programa no son los primeros valores del array process.argv, ya que los dos primeros valores están reservados por Node para información del sistema.
+Tenga en cuenta que los primeros argumentos de su programa no son los primeros valores del array process.argv, ya que
+los dos primeros valores están reservados por Node para información del sistema.
 
 La lista de ficheros debe imprimirse en la consola, un fichero por línea. Debe utilizar E/S asíncrona.
 
